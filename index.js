@@ -133,6 +133,12 @@ crateForm.addEventListener('submit', (event) => {
 
 // ---------------------------------------------=> Удаление элементов из списка и из обьекта
 
+const renderItem = (domEl) => {// Проверка на наличие задач
+  if(!domEl.children.length){
+    return confirm('Ваш список задач пуст! Добавьте новую задачу');
+  }
+}
+
 
 tasksList.addEventListener('click', (e) => {
   const { target } = e;
@@ -163,6 +169,10 @@ tasksList.addEventListener('click', (e) => {
         console.log(tasks);
       }
     })
+
+    setTimeout(() => {
+      renderItem(tasksList);
+    },1000)
   }
 })
 
