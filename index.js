@@ -148,6 +148,8 @@ const renderItem = (domEl) => {// Проверка на наличие зада�
     errorBlock.style.fontSize = '20px';
     errorBlock.textContent = 'Список задач пуст! Добавьте новую задачу';
     document.querySelector('body').append(errorBlock);
+  }else {
+    errorBlock.remove();
   }
 }
 
