@@ -2,6 +2,10 @@ const crateForm = document.querySelector('.create-task-block');
 const btnCreate = document.querySelector('.create-task-block__button.default-button');
 const tasksList = document.querySelector('.tasks-list');
 const taskBlock = document.querySelector('#tasks');
+const input = document.querySelector('.create-task-block__input.default-text-input');
+const errorBlock = document.createElement('div');
+
+input.style.paddingLeft = '10px';
 let randomId = Date.now();
 
 const tasks = [
@@ -104,6 +108,7 @@ crateForm.addEventListener('submit', (event) => {
     tasksList.insertAdjacentHTML('afterbegin', generateTask(newTask.id, newTask.text))
 
     // -----------------=> при добавлении проверяем тему проходимся по элементам
+
     const bodyDark = document.querySelector('.darkTheme');
     const taskItem = document.querySelectorAll('.task-item');
     const btn = document.querySelectorAll('button');
@@ -135,7 +140,14 @@ crateForm.addEventListener('submit', (event) => {
 
 const renderItem = (domEl) => {// Проверка на наличие задач
   if(!domEl.children.length){
-    return confirm('Ваш список задач пуст! Добавьте новую задачу');
+    
+    errorBlock.style.width = '70%';
+    errorBlock.style.margin = '20px 0 0 30px';
+    errorBlock.style.textAlign = 'center';
+    errorBlock.style.padding = '10px';
+    errorBlock.style.fontSize = '20px';
+    errorBlock.textContent = 'Список задач пуст! Добавьте новую задачу';
+    document.querySelector('body').append(errorBlock);
   }
 }
 
@@ -187,6 +199,7 @@ document.addEventListener('keydown', (e) => {
     const bodyDark = document.querySelector('.darkTheme');
     const taskItem = document.querySelectorAll('.task-item');
     const btn = document.querySelectorAll('button');
+    const label = document.querySelectorAll('label');
 
     if(bodyDark){
       bodyDark.style.background = '#24292E';
@@ -196,6 +209,12 @@ document.addEventListener('keydown', (e) => {
       btn.forEach(el => {
         el.style.border = '1px solid #ffffff';
       })
+      label.forEach(el => {
+        el.classList.add('whiteColor');
+      })
+      input.style.background = '#4f4f4f';
+      input.style.color = '#fff';
+      errorBlock.style.color = '#fff';
     }else{
       document.querySelector('body').style.background = 'initial';
       taskItem.forEach(el => {
@@ -204,6 +223,12 @@ document.addEventListener('keydown', (e) => {
       btn.forEach(el => {
         el.style.border = 'none';
       })
+      label.forEach(el => {
+        el.classList.remove('whiteColor');
+      })
+      input.style.background = 'initial';
+      input.style.color = 'initial';
+      errorBlock.style.color = '#000';
     }
 
   }

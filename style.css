@@ -138,6 +138,10 @@ body {
   padding: 0.2em;
 }
 
+.checkbox-form__checkbox + .whiteColor:before {
+  border-color: #b5b5b5;
+}
+
 .checkbox-form__checkbox  {
   display: none;
 }
