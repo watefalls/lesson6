@@ -79,6 +79,18 @@ for(let item of tasks){
 
 // ---------------------------------------------=> Добавление элементов если данные валидны и вывод модального окна
 
+const renderItem = (domEl) => {// Проверка на наличие задач
+  if(!domEl.children.length){
+    errorBlock.style.width = '70%';
+    errorBlock.style.margin = '20px 0 0 30px';
+    errorBlock.style.textAlign = 'center';
+    errorBlock.style.padding = '10px';
+    errorBlock.style.fontSize = '20px';
+    errorBlock.textContent = 'Список задач пуст! Добавьте новую задачу';
+    document.querySelector('body').append(errorBlock);
+  }
+}
+
 
 const error = document.createElement('span');
 error.className = "error-message-block";
@@ -104,6 +116,7 @@ crateForm.addEventListener('submit', (event) => {
     error.textContent = 'Задача с таким названием уже существует';
   }else if(value !== '' && !isTaskInTasks){
     error.textContent = '';
+    errorBlock.remove();
     tasks.push(newTask);
     tasksList.insertAdjacentHTML('afterbegin', generateTask(newTask.id, newTask.text))
 
@@ -137,22 +150,6 @@ crateForm.addEventListener('submit', (event) => {
 
 
 // ---------------------------------------------=> Удаление элементов из списка и из обьекта
-
-const renderItem = (domEl) => {// Проверка на наличие задач
-  if(!domEl.children.length){
-    
-    errorBlock.style.width = '70%';
-    errorBlock.style.margin = '20px 0 0 30px';
-    errorBlock.style.textAlign = 'center';
-    errorBlock.style.padding = '10px';
-    errorBlock.style.fontSize = '20px';
-    errorBlock.textContent = 'Список задач пуст! Добавьте новую задачу';
-    document.querySelector('body').append(errorBlock);
-  }else {
-    errorBlock.remove();
-  }
-}
-
 
 tasksList.addEventListener('click', (e) => {
   const { target } = e;
