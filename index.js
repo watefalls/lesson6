@@ -125,6 +125,7 @@ crateForm.addEventListener('submit', (event) => {
     const bodyDark = document.querySelector('.darkTheme');
     const taskItem = document.querySelectorAll('.task-item');
     const btn = document.querySelectorAll('button');
+    const label = document.querySelectorAll('label');
 
     if(bodyDark){
       bodyDark.style.background = '#24292E';
@@ -134,6 +135,9 @@ crateForm.addEventListener('submit', (event) => {
       btn.forEach(el => {
         el.style.border = '1px solid #ffffff';
       })
+      label.forEach(el => {
+        el.classList.add('whiteColor');
+      })
     }else{
       document.querySelector('body').style.background = 'initial';
       taskItem.forEach(el => {
@@ -141,6 +145,9 @@ crateForm.addEventListener('submit', (event) => {
       })
       btn.forEach(el => {
         el.style.border = 'none';
+      })
+      label.forEach(el => {
+        el.classList.remive('whiteColor');
       })
     }
 
